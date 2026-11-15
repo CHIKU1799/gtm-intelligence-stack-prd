@@ -1,13 +1,13 @@
 # Product PRDs and Briefs: Nishant Kumar
 
-One full PRD (the Elets GTM Intelligence Stack) followed by four product briefs in the same format: PolicyAI, FedE, Originn AI and Tender Agent. Screenshots are from the working products; contact details are cropped out. Everything in one file: [Product_PRDs_and_Briefs_Nishant_Kumar.pdf](pdf/Product_PRDs_and_Briefs_Nishant_Kumar.pdf).
+Two full PRDs (the Elets GTM Intelligence Stack and Originn AI) and three product briefs in the same format: PolicyAI, FedE and Tender Agent. Screenshots are from the working products; contact details are cropped out. Everything in one file: [Product_PRDs_and_Briefs_Nishant_Kumar.pdf](pdf/Product_PRDs_and_Briefs_Nishant_Kumar.pdf).
 
 | Document | Product type | Read | PDF |
 | --- | --- | --- | --- |
 | PRD: Elets GTM Intelligence Stack | B2B sales and matchmaking stack | [Read](#prd-elets-gtm-intelligence-stack) | [PDF](pdf/PRD_Elets_GTM_Intelligence_Stack.pdf) |
 | Brief: PolicyAI | Regulatory compliance copilot, B2B SaaS | [Read](#brief-policyai) | [PDF](pdf/Brief_PolicyAI.pdf) |
 | Brief: FedE | Conversational AI for delivery customers | [Read](#brief-fede) | [PDF](pdf/Brief_FedE.pdf) |
-| Brief: Originn AI | Intelligence layer for campus startups | [Read](#brief-originn-ai) | [PDF](pdf/Brief_Originn_AI.pdf) |
+| PRD: Originn AI | Intelligence layer for campus startups | [Read](#prd-originn-ai) | [PDF](pdf/PRD_Originn_AI.pdf) |
 | Brief: Tender Agent | Government tender search | [Read](#brief-tender-agent) | [PDF](pdf/Brief_Tender_Agent.pdf) |
 
 ---
@@ -157,21 +157,145 @@ Open questions:
 
 ---
 
-# Brief: Originn AI
+# PRD: Originn AI
 
-**Live:** originn-ai.vercel.app · **Role:** Co-Founder and AI Lead, Originn (originn.co.in)
+**Live:** [originn-ai.vercel.app](https://originn-ai.vercel.app) · **Role:** Co-Founder and AI Lead, Originn ([originn.co.in](https://www.originn.co.in)) · **Status:** live preview, accounts and checkout are demo-only
+
+## Summary
+
+Originn AI is the verification and intelligence layer of Originn: it scores, matches and maps India's campus-built startups so that founders, incubators and investors can act on evidence. It covers 200 ventures from 26 institutes, a live feed of grants and programmes, and a directory of 11,327 industry decision makers.
 
 ![Originn AI landing page: 200 ventures across 26 institutes as a live graph](images/originn-ai.jpg)
 
+## Problem
+
+- **Hard to verify.** A campus startup's claims (incubator, founders, traction) are scattered across sites and cannot be checked quickly.
+- **Hard to find money.** Founders miss grants, fellowships and accelerators they qualify for because deadlines and eligibility sit on dozens of official pages.
+- **Hard to see the field.** Incubators and investors have no single view of which sectors and institutes are moving this year.
+- **Hard to reach buyers.** Student founders have no route to industry decision makers for pilots and first customers.
+
+## Users
+
+| User | What they need | Tool |
+| --- | --- | --- |
+| Student founder | Programmes they qualify for, and a credible public record | Match, Verify |
+| Incubator manager | Faster first-screen review and a view of their cohort | Verify, Pulse |
+| Investor or corporate scout | A shortlist of verified ventures and the people behind them | Graph, Leads |
+| Originn team | Which ventures to feature, invite or follow up with | Pulse |
+
+## How it works
+
 ![Originn AI flow: collect, verify, match, read](images/diagram-originn-flow.png)
 
-| | |
+## Features shipped
+
+### 1. Verify: a trust score from seven checks
+
+Every venture on the ledger gets a score out of 100 built from seven explainable checks, such as web presence, incubator record traced to an institute, named founders and activity in the last 12 months. Each check shows what it looked at and what it found. A form scores a venture that is not yet listed (Pro).
+
+![Verify: trust score for one venture with each check explained](images/originn-verify.jpg)
+
+### 2. Match: grants and programmes ranked per venture
+
+Every live opportunity in the Originn feed is scored for one venture. Sector overlap, stage fit, home state and eligibility windows add or remove points, and every line of reasoning is shown. Expired programmes drop out on their own. Filters cover challenge, seed fund, grant, fellowship, accelerator, loan and credits. "Describe a venture" matching is a Pro feature.
+
+![Match: programmes ranked for one venture with the reasons](images/originn-match.jpg)
+
+### 3. Pulse: what moved on campus this year
+
+Sector momentum, institute output, stage mix and dated 2026 moves, computed from the ledger. Four "signal to play" cards turn each cohort into an action for the Originn team: invite to list a pre-order product, feature in Trending, open a collaboration call, or ask founders to complete the record.
+
+![Pulse: four signal-to-play cards with the ventures in each cohort](images/originn-pulse.jpg)
+
+### 4. Graph: who built what, where, with whose money
+
+A force-directed graph of 293 points and 536 links: institutes, ventures, sectors and investors who back more than one venture. Focus mode dims everything except a point's neighbours; search, drag and zoom are supported. The investor layer is a Pro feature.
+
+![Graph: institutes, ventures, sectors and repeat investors](images/originn-graph.jpg)
+
+### 5. Leads: founders and industry decision makers
+
+A directory of 11,327 industry decision makers plus the founders and companies on the campus ledger. Users filter by vertical, seniority, sector, location and event, then reveal a profile against a monthly credit allowance. Saved lists, a pipeline board, analytics, import of the user's own contacts and CSV export (Scout plan) are included. Phone numbers and emails are not held in the site; a reveal shows what is on file and routes the introduction through Originn.
+
+![Leads: contact directory with reveal credits, lists and pipeline](images/originn-leads.jpg)
+
+### 6. News: a campus startup newsroom
+
+Funding, grants, policy and deeptech news pulled live from eight sources, sorted by desk (Campus, Funding, Grants and programmes, Policy, Deeptech, Global) and tied back to institutes on the ledger. A "closing soon" panel links to Match.
+
+![News: live feed sorted by desk and linked to the ledger](images/originn-news.jpg)
+
+### 7. Dashboard and app shell
+
+After sign-in the tools sit in one sidebar app. The dashboard shows shortcuts, ledger counts, the user's pipeline and lists, programmes closing soon, ventures that moved, and campus news. A command palette (Cmd+K) searches everything, and there is a light, dark and system theme.
+
+![Dashboard: shortcuts, pipeline, closing programmes and campus news](images/originn-dashboard.jpg)
+
+### 8. Accounts, plans and the teaser wall
+
+The landing page, About, News and Verify are open. Match, Pulse, Graph and Leads show a blurred preview with inline sign-up, so visitors see the value before creating an account. Three plans are defined.
+
+| Plan | Price | Includes |
+| --- | --- | --- |
+| Free | ₹0 | 5 contact reveals a month, core tools with 5 results, 1 saved list, pipeline board |
+| Pro | ₹1,499 a month | 60 reveals, Pro tools (score unlisted ventures, describe-a-venture matching, full play lists, investor graph, weekly brief), 10 lists, pipeline analytics |
+| Scout | ₹4,999 a month | Unlimited reveals and lists, all Pro tools, CSV export |
+
+![Plans: Free, Pro and Scout](images/originn-plans.jpg)
+
+![Sign-up: one account for every tool](images/originn-signup.jpg)
+
+### 9. Landing page, About and walkthrough film
+
+A live campus-graph hero (200 ventures orbiting 26 institutes, cursor-reactive), a scroll-driven statement, a pinned tool strip, a 20-second motion reel, a narrated walkthrough film and an About page.
+
+## What is real and what is preview
+
+| Area | State |
 | --- | --- |
-| **Problem** | Campus startups are hard to verify and hard to find, and founders miss grants and programmes they qualify for. |
-| **Users** | Student founders, incubator managers and early-stage investors. |
-| **What shipped** | Verify (a trust score from seven checks), Match (open grants and programmes ranked per venture with a reason), Pulse (sector and institute momentum) and Graph (institutes, ventures, sectors, investors), over 200 startups from 26 institutes and a live opportunities feed. |
-| **Evidence** | The Originn platform reached 100+ startups and 1,000+ students across two campuses. Paid plans on Originn AI are a preview; no revenue is claimed. |
-| **Next** | Real accounts and payments, and the evaluation engine wired into incubator application review. |
+| Venture data, trust scores, matching, pulse, graph, news feed | Live, computed from real data |
+| Accounts | Stored in the visitor's browser only |
+| Checkout | Preview; no payment is collected and no revenue is claimed |
+| Contact reveals | Show on-file flags and an introduction route, not raw phone numbers or emails |
+
+## Success metrics
+
+Targets are proposals; nothing below is measured yet except where stated.
+
+| Metric | Why it matters | Proposed target |
+| --- | --- | --- |
+| Ventures with a Verified score | Trust is the product | 154 of 200 today; 500 verified within two quarters |
+| Review time per application at an incubator | The evaluation engine is designed to cut first review from 2 hours to under 10 minutes | Measure in a pilot with one incubator |
+| Matches that lead to an application | Shows Match is useful, not just accurate | 20% of signed-in founders apply to one matched programme |
+| Free to Pro conversion | Tests the pricing | 3 to 5% after real payments launch |
+| Weekly active signed-in users | Habit | Baseline after real accounts launch |
+
+## Roadmap: what can be done next
+
+| Horizon | Item | Outcome |
+| --- | --- | --- |
+| Now | Real accounts and database (Supabase) and payments with GST invoices (Razorpay) | Plans can be sold; usage is measurable |
+| Now | Founder claim flow: a founder claims the venture page and uploads evidence for missing checks | Scores improve from the source; 46 ventures under review get resolved |
+| Now | Wire the Level 1 screener and multi-agent evaluator into incubator application review | Review time falls from hours to minutes, with an explained score |
+| Next | Automated daily refresh of the opportunities feed and deadline alerts by email and WhatsApp | Founders stop missing deadlines |
+| Next | Weekly brief email (already promised on the News page) | Retention loop for Pro users |
+| Next | Scale the ledger from 200 to 1,000+ ventures and add NITs and state universities not yet covered | Coverage that investors can rely on |
+| Next | Warm introductions: a tracked request from an investor or corporate to a founder, with consent on both sides | Leads becomes a marketplace, not a directory |
+| Later | Verified badge and trust score embedded on originn.co.in startup pages and as a shareable badge | Verification becomes visible where students and partners browse |
+| Later | Investor and corporate workspaces: saved theses, alerts when a matching venture moves | The Scout plan earns its price |
+| Later | Public API and incubator dashboards (cohort health, programme coverage, alumni outcomes) | Institutional revenue line |
+| Later | Talent matching: students matched to startup roles, linked with QuicklyHired | Closes the loop with Originn's recruiting product |
+
+## Risks and open questions
+
+| Risk | Mitigation |
+| --- | --- |
+| Scores rest on public records and can be wrong | Every check is shown with its evidence; founders can contest and add proof |
+| Personal data in the directory | Contact details stay off the public site; reveals go through Originn; consent recorded before any introduction |
+| Opportunity deadlines go stale | Only official pages are used; expired items hide automatically; daily refresh planned |
+| Willingness to pay is untested | Run a paid pilot with 10 founders and 3 investors before building billing in depth |
+
+Open questions: who verifies a claim when the incubator does not respond, and should incubators pay per seat or per cohort?
 
 ---
 
