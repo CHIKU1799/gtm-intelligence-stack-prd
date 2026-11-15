@@ -1,14 +1,14 @@
 # Product PRDs and Briefs: Nishant Kumar
 
-One full PRD (the Elets GTM Intelligence Stack) followed by four product briefs in the same format: PolicyAI, FedE, Originn AI and Tender Agent. Screenshots are from the working products; contact details are cropped out.
+One full PRD (the Elets GTM Intelligence Stack) followed by four product briefs in the same format: PolicyAI, FedE, Originn AI and Tender Agent. Screenshots are from the working products; contact details are cropped out. Everything in one file: [Product_PRDs_and_Briefs_Nishant_Kumar.pdf](pdf/Product_PRDs_and_Briefs_Nishant_Kumar.pdf).
 
-| Document | Product type | Jump |
-| --- | --- | --- |
-| PRD: Elets GTM Intelligence Stack | B2B sales and matchmaking stack | [Read](#prd-elets-gtm-intelligence-stack) |
-| Brief: PolicyAI | Regulatory compliance copilot, B2B SaaS | [Read](#brief-policyai) |
-| Brief: FedE | Conversational AI for delivery customers | [Read](#brief-fede) |
-| Brief: Originn AI | Intelligence layer for campus startups | [Read](#brief-originn-ai) |
-| Brief: Tender Agent | Government tender search | [Read](#brief-tender-agent) |
+| Document | Product type | Read | PDF |
+| --- | --- | --- | --- |
+| PRD: Elets GTM Intelligence Stack | B2B sales and matchmaking stack | [Read](#prd-elets-gtm-intelligence-stack) | [PDF](pdf/PRD_Elets_GTM_Intelligence_Stack.pdf) |
+| Brief: PolicyAI | Regulatory compliance copilot, B2B SaaS | [Read](#brief-policyai) | [PDF](pdf/Brief_PolicyAI.pdf) |
+| Brief: FedE | Conversational AI for delivery customers | [Read](#brief-fede) | [PDF](pdf/Brief_FedE.pdf) |
+| Brief: Originn AI | Intelligence layer for campus startups | [Read](#brief-originn-ai) | [PDF](pdf/Brief_Originn_AI.pdf) |
+| Brief: Tender Agent | Government tender search | [Read](#brief-tender-agent) | [PDF](pdf/Brief_Tender_Agent.pdf) |
 
 ---
 
@@ -56,18 +56,7 @@ The opportunity is that every piece already exists. Linking them costs integrati
 
 ## How the four products link
 
-```mermaid
-flowchart LR
-    A["1. Signal<br/><b>Engager Board</b><br/>LinkedIn engagers,<br/>tiered 1 / 2 / 3"] --> B["2. Enrich<br/><b>GTM Skill</b><br/>AI-filled columns,<br/>segments the list"]
-    B --> C["3. Activate<br/><b>ContactIQ</b><br/>campaigns, calls,<br/>messages, follow-ups"]
-    C --> D["4. Match<br/><b>Solution Marketplace</b><br/>buyer need matched<br/>to 3 to 5 providers"]
-    R[("One contact record<br/>id, tier, fit score,<br/>enriched fields, outcomes")]
-    A <--> R
-    B <--> R
-    C <--> R
-    D <--> R
-    R -. "outcomes feed back into<br/>tier rules and fit scores" .-> A
-```
+![How the four products link: signal, enrich, activate and match around one contact record](images/diagram-gtm-stack.png)
 
 A lead enters as a signal, is enriched, is worked by a rep in ContactIQ and, where there is a buying need, is matched in the Marketplace. Every tool reads and writes the same record, so nothing is retyped and outcomes improve the next list.
 
@@ -137,6 +126,8 @@ Open questions:
 
 ![PolicyAI compliance dashboard on a demo workspace](images/policyai-dashboard.jpg)
 
+![PolicyAI flow: crawl, extract, map, act](images/diagram-policyai-flow.png)
+
 | | |
 | --- | --- |
 | **Problem** | Compliance teams at Indian banks, NBFCs and brokers read every new circular by hand and cannot say which of their own policies it breaks. |
@@ -152,6 +143,8 @@ Open questions:
 **Context:** FedEx Digithon, Round-3 live finalist · **Role:** agentic AI and secure-by-design lead on the team
 
 ![FedE shipment view with the journey map, countdown and delivery controls](images/fede-shipments.jpg)
+
+![FedE flow: ask, plan, check, act](images/diagram-fede-flow.png)
 
 | | |
 | --- | --- |
@@ -170,6 +163,8 @@ Open questions:
 
 ![Originn AI landing page: 200 ventures across 26 institutes as a live graph](images/originn-ai.jpg)
 
+![Originn AI flow: collect, verify, match, read](images/diagram-originn-flow.png)
+
 | | |
 | --- | --- |
 | **Problem** | Campus startups are hard to verify and hard to find, and founders miss grants and programmes they qualify for. |
@@ -185,6 +180,8 @@ Open questions:
 **Live:** tender-agent-dashboard.vercel.app · **Role:** built at Elets Technomedia
 
 ![Tender Agent landing page: 1,38,350 tenders from 44 procurement portals](images/tender-agent.jpg)
+
+![Tender Agent flow: crawl, clean, classify, use](images/diagram-tender-flow.png)
 
 | | |
 | --- | --- |
