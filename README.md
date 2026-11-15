@@ -14,24 +14,37 @@ Two full PRDs (the Elets GTM Intelligence Stack and Originn AI) and three produc
 
 # PRD: Elets GTM Intelligence Stack
 
-**Author:** Nishant Kumar · **Date:** 15 Nov 2026 · **Status:** Draft for review
+**Author:** Nishant Kumar · **Date:** 15 Nov 2026 · **Status:** four tools built, linking in progress
 
 ## Summary
 
-Four tools built separately at Elets Technomedia become one go-to-market stack with a single contact record: GTM Engineering Skill (enrich), Engager Board (signal), ContactIQ (activate) and Solution Marketplace (match).
+Four tools built at Elets Technomedia form one go-to-market stack around a single contact record: Engager Board (signal), GTM Engineering Skill (enrich), ContactIQ (activate) and Solution Marketplace (match). Work on optimising the sales process has started: 42 spreadsheets are now one base of 11,950 contacts, and a pilot run cut the profiles a rep must review by 90%.
 
-Elets sells summit seats, sponsorships and vendor introductions to BFSI, government, health and education buyers. Today each tool works alone, so a lead found in one place is retyped in the next. This PRD defines the hand-offs, the shared record and the metrics that make the four behave as one product.
+Elets sells summit seats, sponsorships and vendor introductions to BFSI, government, health and education buyers. Each tool used to work alone, so a lead found in one place was retyped in the next. This PRD reports what each tool does today, what the first optimisation results are, and what is needed to make the four behave as one product.
 
 | Product | Job in the stack | State today |
 | --- | --- | --- |
-| [GTM Engineering Skill](https://github.com/CHIKU1799/GTM-skill) | Enrich and segment any prospect CSV with per-row AI answers | Open source, 30 automated tests, 50+ parallel calls for 25K-row lists |
-| Engager Board | Turn LinkedIn post engagers into Tier 1/2/3 leads | Live, with per-post spend and cost per qualified lead |
-| ContactIQ (shipped as eConnect) | Search, call lists, campaigns, messages and follow-ups over the firm's contacts | Running on about 12,000 contacts, with My day, Campaigns, Team and Data health |
-| Solution Marketplace | Match buyer requirements to vetted solution providers | Live demo, 9 screens, 8-stage opportunity pipeline |
+| Engager Board | Turn LinkedIn post engagers into Tier 1/2/3 leads | Live at engager-board.vercel.app, with per-post spend and cost per qualified lead |
+| [GTM Engineering Skill](https://github.com/CHIKU1799/GTM-skill) | Enrich and segment any prospect sheet with per-row AI answers | Open source, live at gtm-skill.vercel.app, 30 automated tests |
+| ContactIQ (shipped as eConnect) | Search, call lists, campaigns, messages and follow-ups over the firm's contacts | Running on 11,950 contacts from 42 ingested files |
+| Solution Marketplace | Match buyer requirements to vetted solution providers | Live demo at elets-marketplace.vercel.app, 9 screens, 242 automated tests |
 
-![ContactIQ smart search: a plain-language query over 11,950 contacts, with sector and event filters](images/contactiq-search.jpg)
+## Results so far: optimising the work process
 
-*ContactIQ (shipped as eConnect): plain-language search over the contact base. Result rows are cropped out to protect contact details.*
+These are the first measured numbers. They come from one pilot run and the current contact base, not from a full quarter of use.
+
+| Step in the process | Before | Now | Source |
+| --- | --- | --- | --- |
+| Finding a contact | 42 separate event sheets and workbooks | One searchable base of 11,950 contacts (5,820 with phone, 8,405 with email, 2,267 C-level) | ContactIQ counts |
+| Deciding who is worth a call | Read every engager's profile by hand | 381 engagers auto-tiered; 39 are Tier 1 or 2, so 90% fewer profiles to review | Engager Board pilot, 3 posts |
+| Cost of a new lead signal | Manual LinkedIn browsing | 381 leads for about $1.51 of scraping, under half a US cent each | Pilot spend tracker |
+| Paid enrichment | Every scraped name sent for a verified email | Only Tier 1 and 2 go forward, about 90% fewer paid lookups (projected from the tiering) | Tier counts |
+| Researching a list | One company at a time | 50+ parallel AI calls; a 25,000-row list in minutes, with the cost shown before the run | GTM Skill design and tests |
+| Data quality | Junk and duplicate rows in imports | 715 junk rows removed; duplicates and gaps listed in Data health | ContactIQ import log |
+
+![Pilot run funnel: 3 posts, 381 engagers, 39 Tier 1 and 2, 19 Tier 1](images/diagram-gtm-funnel.png)
+
+The pilot used three public posts and the default tier rules, so the 39 is a filter result, not yet 39 sales conversations. Rep time saved per week is not measured yet; it is the first metric to baseline.
 
 ## Problem and opportunity
 
@@ -60,35 +73,107 @@ The opportunity is that every piece already exists. Linking them costs integrati
 
 A lead enters as a signal, is enriched, is worked by a rep in ContactIQ and, where there is a buying need, is matched in the Marketplace. Every tool reads and writes the same record, so nothing is retyped and outcomes improve the next list.
 
+## Feature report
+
+### 1. Engager Board: signal
+
+Turns the people who comment on or react to a LinkedIn post into a tiered outreach list.
+
+- **Sources.** Add a post link in any form (post URL, feed URL, short link or embed code); import all recent posts of a company page or a person's profile in one step.
+- **Extraction.** Comments and reactions per post, with exact post attribution; results are cached so a re-run costs nothing.
+- **Tiering.** Tier 1, 2, 3 or Excluded from the structured job title, not the headline; agencies, freelancers and consultants are filtered before any paid enrichment.
+- **Lead board.** Search, filters by tier, engagement type, country and company, sortable columns, a detail drawer and filtered CSV export.
+- **Analytics.** Per-post tiers, spend and cost per qualified lead.
+- **Events tab.** Post-event intelligence for a summit: who engaged, on what, with exports. Event attendees never become sales leads automatically.
+- **Controls.** Accounts and workspaces, API keys encrypted at rest, and a server-signed spend quote before every paid run.
+
+![Engager Board sign-in page](images/engager-board.jpg)
+
+*Only the sign-in page is shown; the lead board holds real people's profiles.*
+
+### 2. GTM Engineering Skill: enrich
+
+Takes any sheet of companies or people, asks one question of every row, and fills a new column with the answers.
+
+- **Inputs.** CSV, XLSX or Google Sheets; URL and feature columns are detected automatically.
+- **Ask anything.** A plain-language question becomes a per-row prompt, which can be edited by hand for any row.
+- **Website crawl.** Optionally reads each company's homepage and adds it to the prompt.
+- **Scale.** An async engine with 50+ parallel calls, retries and backoff, built for 25,000-row lists.
+- **Cost control.** A price estimate before the run; a cheap model for bulk rows and a stronger one for segmentation and hypotheses.
+- **Find people.** Optional people search by company and seniority.
+- **Privacy.** Data stays in the browser except for the AI calls; keys are stored locally.
+- **Quality.** 30 automated tests across SaaS, e-commerce and healthcare datasets.
+
+![GTM Engineering Skill: keys, data, ask, find people, export](images/gtm-skill.jpg)
+
+### 3. ContactIQ: activate
+
+The daily workspace for sales, shipped inside the firm's platform as eConnect.
+
+- **Smart search.** A plain-language query ("best NBFC decision-makers in Chennai for our tech summit") is parsed for sector, seniority, city and channel; each result gets a 1 to 99 fit score with a factual reason.
+- **My day.** A daily plan of who to call, follow-ups due and the next action on each record.
+- **Campaigns.** One campaign per summit edition with stages, suggested members and progress.
+- **Call lists and bulk actions.** Save a search as a call list; add to a campaign, log an outcome or set a follow-up for many contacts at once.
+- **Messages.** WhatsApp and email drafts for six purposes, opened straight from the record; email drafts go through an approvals queue.
+- **Follow-ups and outcomes.** Call outcomes and follow-up dates on every contact.
+- **Team.** Activity by rep over a chosen period.
+- **Data health.** Gaps such as missing phone, email or company, with export per gap.
+- **Import and export.** CSV, TSV and XLSX with header mapping; CSV export.
+- **Scheduled actions.** Daily or weekly digests to Slack: uncalled hot leads, call-list progress, new contacts, pending approvals.
+- **Access.** Team login, and every contact read is logged.
+
+![ContactIQ smart search: a plain-language query over 11,950 contacts, with sector and event filters](images/contactiq-search.jpg)
+
+*Result rows are cropped out to protect contact details.*
+
+### 4. Solution Marketplace: match
+
+A matchmaking network between buyers with a problem and vetted solution providers.
+
+- **Requirement intake.** A buyer describes the problem in their own words; the platform reads categories, scale, timeline, budget and intent as they type.
+- **Buyer controls.** The buyer stays anonymous until they accept an introduction and chooses how many providers to meet.
+- **Scoring.** A lead quality score for the requirement and an 8-dimension fit score for each provider, with every score explained in a sentence.
+- **Validation.** A sector lead reviews and releases a shortlist of 3 to 5 providers.
+- **Integrity wall.** Rank is set by fit and validation alone; paid visibility never changes it, and each opportunity has one payer.
+- **Pipeline.** Eight stages from matched to closed, with reach rates between stages and the payer side on every card.
+- **Commercials.** Four listing plans and a Pro tier for buyers and vendors, as set out in the commercial report.
+- **Connectors.** Reads the firm's knowledge graph, tender data and newsroom; writes demand reports for the magazine and introduction packs for ContactIQ.
+- **Phase 0 concierge.** A 14-sheet workbook with live scoring formulas so the service can run by hand before the software is rolled out.
+
+![Solution Marketplace: describing a requirement in plain words](images/marketplace-intake.jpg)
+
 ![Solution Marketplace shortlist: providers ranked by an explained fit score](images/marketplace-shortlist.jpg)
 
-*Solution Marketplace: a draft shortlist ranked by fit score alone, on sample data.*
+![Solution Marketplace: the eight-stage opportunity pipeline](images/marketplace-pipeline.jpg)
 
-## Requirements
+*Marketplace screens show sample data.*
 
-Each product keeps its own job; the new work is the hand-offs marked "Next".
+## Requirements for linking the four
 
-| Product | Shipped today | Next (this PRD) | Priority |
-| --- | --- | --- | --- |
-| GTM Engineering Skill | Drop any CSV, ask a question, get a new AI-filled column; website crawl per company; cost estimate before a run; retry and backoff | Run as a ContactIQ action on a saved list, writing answers back as fields on the contact record | P0 |
-| Engager Board | Post, company and profile imports; tiering from structured job title; per-post analytics; server-signed spend quote before any paid run | Push Tier 1 and Tier 2 leads into a ContactIQ campaign with the source post attached | P0 |
-| ContactIQ | Smart search with a 1 to 99 fit score and reason; call lists; campaigns with stages; WhatsApp and email drafts; follow-up dates; My day; Team; Data health; CSV and XLSX import | One contact id shared by all four tools; dedupe on import from Engager Board; outcome codes exposed to the other tools | P0 |
-| Solution Marketplace | Requirement intake, lead quality score, 8-dimension fit score, sector-lead validation, buyer-gated introduction, 8-stage pipeline | Pull provider and buyer contacts from ContactIQ; write introduction outcomes back to the contact timeline | P1 |
-| Shared | File-backed stores per tool | Nightly outcome feed: calls, replies and introductions adjust tier rules and fit scores | P2 |
+Each product keeps its own job; the new work is the hand-offs below.
+
+| Hand-off | What changes | Priority |
+| --- | --- | --- |
+| Shared contact record | One contact id used by all four tools; dedupe on import; outcome codes readable by the other tools | P0 |
+| Engager Board to ContactIQ | Tier 1 and Tier 2 leads pushed into a ContactIQ campaign with the source post attached | P0 |
+| GTM Skill inside ContactIQ | Run an enrichment question on a saved list; answers written back as fields on the contact | P0 |
+| ContactIQ to Marketplace | Marketplace pulls provider and buyer contacts; introduction outcomes written back to the contact timeline | P1 |
+| Outcome feedback | Nightly feed of calls, replies and introductions that adjusts tier rules and fit scores | P2 |
 
 Non-goals for this release: automated sending without a human approving the message, a mobile app, and billing.
 
 ## Success metrics and guardrails
 
-The north-star metric is qualified conversations per rep per week, measured from ContactIQ outcome logs. Targets below are proposals to confirm after two weeks of baseline data.
+The north-star metric is qualified conversations per rep per week, measured from ContactIQ outcome logs. Targets are proposals to confirm after two weeks of baseline data.
 
-| Metric | Source | Proposed target |
-| --- | --- | --- |
-| Qualified conversations per rep per week | ContactIQ outreach log | Baseline first, then +30% in 90 days |
-| Cost per qualified lead | Engager Board Analytics | Tracked per post; stop sources above 2x the median |
-| Time from signal to first touch | Engager Board import time to first ContactIQ outcome | Under 2 working days |
-| Duplicate rate on import | ContactIQ Data health | Under 3% |
-| Introductions accepted by buyers | Solution Marketplace pipeline | Baseline in Phase 0 concierge |
+| Metric | Source | Today | Proposed target |
+| --- | --- | --- | --- |
+| Qualified conversations per rep per week | ContactIQ outreach log | Not yet baselined | +30% in 90 days |
+| Share of scraped profiles a rep must review | Engager Board tiers | 10% (39 of 381) in the pilot | Hold at or under 15% |
+| Cost per lead signal | Engager Board Analytics | About $0.004 in the pilot | Track per post; stop sources above 2x the median |
+| Time from signal to first touch | Import time to first ContactIQ outcome | Not yet measured | Under 2 working days |
+| Duplicate rate on import | ContactIQ Data health | Not yet measured | Under 3% |
+| Introductions accepted by buyers | Marketplace pipeline | Sample data only | Baseline in Phase 0 concierge |
 
 Guardrails:
 
