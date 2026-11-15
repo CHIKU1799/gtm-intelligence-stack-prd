@@ -1,3 +1,17 @@
+# Product PRDs and Briefs: Nishant Kumar
+
+One full PRD (the Elets GTM Intelligence Stack) followed by four product briefs in the same format: PolicyAI, FedE, Originn AI and Tender Agent. Screenshots are from the working products; contact details are cropped out.
+
+| Document | Product type | Jump |
+| --- | --- | --- |
+| PRD: Elets GTM Intelligence Stack | B2B sales and matchmaking stack | [Read](#prd-elets-gtm-intelligence-stack) |
+| Brief: PolicyAI | Regulatory compliance copilot, B2B SaaS | [Read](#brief-policyai) |
+| Brief: FedE | Conversational AI for delivery customers | [Read](#brief-fede) |
+| Brief: Originn AI | Intelligence layer for campus startups | [Read](#brief-originn-ai) |
+| Brief: Tender Agent | Government tender search | [Read](#brief-tender-agent) |
+
+---
+
 # PRD: Elets GTM Intelligence Stack
 
 **Author:** Nishant Kumar · **Date:** 15 Nov 2026 · **Status:** Draft for review
@@ -14,6 +28,10 @@ Elets sells summit seats, sponsorships and vendor introductions to BFSI, governm
 | Engager Board | Turn LinkedIn post engagers into Tier 1/2/3 leads | Live, with per-post spend and cost per qualified lead |
 | ContactIQ (shipped as eConnect) | Search, call lists, campaigns, messages and follow-ups over the firm's contacts | Running on about 12,000 contacts, with My day, Campaigns, Team and Data health |
 | Solution Marketplace | Match buyer requirements to vetted solution providers | Live demo, 9 screens, 8-stage opportunity pipeline |
+
+![ContactIQ smart search: a plain-language query over 11,950 contacts, with sector and event filters](images/contactiq-search.jpg)
+
+*ContactIQ (shipped as eConnect): plain-language search over the contact base. Result rows are cropped out to protect contact details.*
 
 ## Problem and opportunity
 
@@ -52,6 +70,10 @@ flowchart LR
 ```
 
 A lead enters as a signal, is enriched, is worked by a rep in ContactIQ and, where there is a buying need, is matched in the Marketplace. Every tool reads and writes the same record, so nothing is retyped and outcomes improve the next list.
+
+![Solution Marketplace shortlist: providers ranked by an explained fit score](images/marketplace-shortlist.jpg)
+
+*Solution Marketplace: a draft shortlist ranked by fit score alone, on sample data.*
 
 ## Requirements
 
@@ -106,3 +128,68 @@ Open questions:
 - Who owns tier rules: sales-ops or each sector lead?
 - Should Marketplace introductions count toward rep targets?
 - Which summit edition is the pilot?
+
+---
+
+# Brief: PolicyAI
+
+**Live:** policyai.com · **Role:** built end to end at Elets Technomedia
+
+![PolicyAI compliance dashboard on a demo workspace](images/policyai-dashboard.jpg)
+
+| | |
+| --- | --- |
+| **Problem** | Compliance teams at Indian banks, NBFCs and brokers read every new circular by hand and cannot say which of their own policies it breaks. |
+| **Users** | Compliance officers and risk heads at regulated BFSI firms. |
+| **What shipped** | Continuous ingestion of 2,900+ documents from 9 regulators with 6-hourly re-crawls; a 2,800+-node knowledge graph; obligations mapped to each firm's uploaded policies; gap analysis, tasks and a copilot that cites the source paragraph; multi-tenant workspaces. |
+| **Evidence** | Retrieval hit@10 rose from 0.914 to 0.971 on a judged 35-query set; full-text search went from 10.6 s to 0.63 s; a per-customer cost model puts the Starter plan at about 87% gross margin (modelled, not invoiced). |
+| **Next** | Per-workspace usage metering, enforced seat and question quotas, and extraction and answer-quality evaluations run on the full gold set. |
+
+---
+
+# Brief: FedE
+
+**Context:** FedEx Digithon, Round-3 live finalist · **Role:** agentic AI and secure-by-design lead on the team
+
+![FedE shipment view with the journey map, countdown and delivery controls](images/fede-shipments.jpg)
+
+| | |
+| --- | --- |
+| **Problem** | Customers learn about a delayed parcel after it is late, then wait in an IVR queue to change the delivery. |
+| **Users** | Delivery customers first; support agents and operations second. |
+| **What shipped** | A 9-tool planner agent over text, voice and barcode; weather-aware rerouting across a 16-hub network; delivery commitments ("before Friday") that the system watches; proactive fleet alerts; reschedule, hold, redirect and cancel from one screen. |
+| **Guardrails** | Three autonomy tiers: cancel and redirect always need explicit customer confirmation held by the platform; role-based access; a 99-test suite in CI. |
+| **Evidence** | Demo data only. Cost avoided is tracked at $17.78 per failed delivery attempt, used as a benchmark and not a measured saving. |
+| **Next** | Sentiment analytics and milestone notifications are on the roadmap, not shipped. |
+
+---
+
+# Brief: Originn AI
+
+**Live:** originn-ai.vercel.app · **Role:** Co-Founder and AI Lead, Originn (originn.co.in)
+
+![Originn AI landing page: 200 ventures across 26 institutes as a live graph](images/originn-ai.jpg)
+
+| | |
+| --- | --- |
+| **Problem** | Campus startups are hard to verify and hard to find, and founders miss grants and programmes they qualify for. |
+| **Users** | Student founders, incubator managers and early-stage investors. |
+| **What shipped** | Verify (a trust score from seven checks), Match (open grants and programmes ranked per venture with a reason), Pulse (sector and institute momentum) and Graph (institutes, ventures, sectors, investors), over 200 startups from 26 institutes and a live opportunities feed. |
+| **Evidence** | The Originn platform reached 100+ startups and 1,000+ students across two campuses. Paid plans on Originn AI are a preview; no revenue is claimed. |
+| **Next** | Real accounts and payments, and the evaluation engine wired into incubator application review. |
+
+---
+
+# Brief: Tender Agent
+
+**Live:** tender-agent-dashboard.vercel.app · **Role:** built at Elets Technomedia
+
+![Tender Agent landing page: 1,38,350 tenders from 44 procurement portals](images/tender-agent.jpg)
+
+| | |
+| --- | --- |
+| **Problem** | Government tenders in India sit on dozens of central, state and PSU portals, each with its own format and date style. |
+| **Users** | Bid teams at vendors, and Elets sector leads tracking public demand. |
+| **What shipped** | Crawlers for 44 portals, one cleaned schema, industry classification, search with deadline and value filters, insights, and a signed-in dashboard. |
+| **Evidence** | 138,350 tenders and contracts consolidated, including 77,648 awarded contracts. The dataset is from April 2026. |
+| **Next** | Scheduled refresh in the hosted version and award-winner extraction to show who won comparable bids. |
